@@ -1,0 +1,71 @@
+{% extends 'base.html' %}
+
+{% block title %}Quote Analysis Results - {{ block.super }}{% endblock %}
+
+{% block content %}
+<div class="row justify-content-center">
+    <div class="col-md-10">
+        <div class="card">
+            <div class="card-header">
+                <h2 class="mb-0">Quote Analysis Results</h2>
+            </div>
+            <div class="card-body">
+                <div class="mb-4">
+                    <h3>Quote Details</h3>
+                    <dl class="row">
+                        <dt class="col-sm-3">Supplier</dt>
+                        <dd class="col-sm-9">{{ quote.supplier.name }}</dd>
+
+                        <dt class="col-sm-3">Quote Number</dt>
+                        <dd class="col-sm-9">{{ quote.quote_number }}</dd>
+
+                        <dt class="col-sm-3">Quote Date</dt>
+                        <dd class="col-sm-9">{{ quote.quote_date }}</dd>
+                    </dl>
+                </div>
+
+                <div class="mb-4">
+                    <h3>Generated Reports</h3>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="card">
+                                <div class="card-body">
+                                    <h5 class="card-title">PDF Report</h5>
+                                    <p class="card-text">View or download the analyzed quote in PDF format.</p>
+                                    <div class="d-grid gap-2">
+                                        <a href="{% url 'download_report' quote.id 'pdf' %}" class="btn btn-primary" target="_blank">
+                                            View PDF
+                                        </a>
+                                        <a href="{% url 'download_report' quote.id 'pdf' %}?download=true" class="btn btn-outline-primary">
+                                            Download PDF
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="card">
+                                <div class="card-body">
+                                    <h5 class="card-title">DOCX Report</h5>
+                                    <p class="card-text">Download the analyzed quote in DOCX format.</p>
+                                    <div class="d-grid">
+                                        <a href="{% url 'download_report' quote.id 'docx' %}" class="btn btn-primary">
+                                            Download DOCX
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="d-grid gap-2">
+                    <a href="{% url 'quote_upload' %}" class="btn btn-outline-primary">
+                        Upload Another Quote
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %} 
